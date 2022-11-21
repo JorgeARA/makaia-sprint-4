@@ -14,6 +14,11 @@ import { AuthProvider } from '../context/firebaseContext';
 import { ProtectedRoute } from './Generic/ProtectedRoute';
 import Verification from './Verification/Verification';
 import DishDetail from './Dishes/DishDetail';
+import Admin from './Admin/Admin';
+import CrudRestaurants from './Admin/CrudRestaurants';
+import CrudDishes from './Admin/CrudDishes';
+import CrudRestaurantsList from './Admin/CrudRestaurantsList';
+import CrudRestaurantsForm from './Admin/CrudRestaurantsForm';
 
 
 function App() {
@@ -46,6 +51,23 @@ function App() {
                   <Route path="/dishdetail" element={
                     <ProtectedRoute><DishDetail /></ProtectedRoute> 
                   } />
+                  <Route path="/admin" element={
+                    <ProtectedRoute><Admin /></ProtectedRoute> 
+                  } />
+                  <Route path="/crudrestaurants" element={
+                    <ProtectedRoute><CrudRestaurantsList /></ProtectedRoute> 
+                  } />
+                  <Route path="/create-restaurant" element={
+                    <ProtectedRoute><CrudRestaurantsForm /></ProtectedRoute> 
+                  } />
+                  <Route path="/edit-restaurant/:id" element={
+                    <ProtectedRoute><CrudRestaurantsForm/></ProtectedRoute> 
+                  } />
+                  {/* {/* <Route path="/restaurants-list" element={
+                    <ProtectedRoute><CrudDishes /></ProtectedRoute> 
+                  } /> */}
+                  
+                  
               </Routes>
             </AuthProvider> 
     }</> 

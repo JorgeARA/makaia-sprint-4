@@ -27,8 +27,13 @@ export function Login() {
         e.preventDefault();
         setError('');
         try{
-            await login(user.email, user.password);
+          const userRole = await login(user.email, user.password);
+          if (userRole==="user"){
             navigate("/");
+          }else{
+            navigate("/admin");
+          }
+            
         } catch (error) {
             if(error.code === "auth/internal-error"){
                 setError('Invalid e-mail');

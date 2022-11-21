@@ -3,28 +3,20 @@ import { Container, Stack, Row, Col } from 'react-bootstrap';
 import './restaurantlist.css';
 import { FcRating } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addRestaurant } from '../../features/restaurants/restaurantSlice';
 
 
 export const RestaurantList = ({ arrayRestaurant: restaurantArray }) => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const [ restaurant, setRestaurant ] = useState({
-        id: '',
-        descripcion: '',
-        imagen: '',
-        numStars: '',
-        workTime: '',
-        beforeyou: ''
-    })
 
-    const handleClickRow = (e) => {
-        setRestaurant({
-             ...restaurant,
-             [e.target.name]: e.target.value,
-         });
+    const handleClick = (restaurant) => () => {
+        dispatch(addRestaurant(restaurant));
         navigate("/dishes");
-    };
+     };
 
     return (
         <>
@@ -33,7 +25,7 @@ export const RestaurantList = ({ arrayRestaurant: restaurantArray }) => {
                     {restaurantArray.map((restaurantObject, index) => {
                         return (
                             <>
-                                <Row key={index} onClick={handleClickRow} >
+                                <Row key={index} onClick={handleClick(restaurantObject)} >
                                     <Col xs={2}><img src={restaurantObject.imagen} alt="restaurant"/></Col>
                                     <Col>
                                         <p className='desc_text'>{restaurantObject.descripcion}</p>
@@ -52,3 +44,4 @@ export const RestaurantList = ({ arrayRestaurant: restaurantArray }) => {
     )
 };
 export default RestaurantList;
+

@@ -33,6 +33,7 @@ export function AuthProvider ({children}) {
         {id:6, name: "Vegetable salad", description: "Best salad of the world 6!", price: 13.45, image: "https://www.hotelportonmedellin.com/cache/1a/45/1a45a7ed6dfb3790b9a288c9972f4624.jpg"}
     ];
 
+
     //Registro
     const signup = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password);
@@ -40,7 +41,18 @@ export function AuthProvider ({children}) {
 
     //Login
     const login = async (email, password) => {
-        const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email, password);
+        const docuRef = doc(firestore, `usersDb/${email}`);  
+        const queryDoc =  await getDoc(docuRef);
+        if(queryDoc.exists()){
+            const infoDocu = queryDoc.data();
+            return infoDocu.role;
+        }else{
+            const docuRef = doc(firestore, `usersDb/default`);  
+            const queryDoc =  await getDoc(docuRef);
+            const infoDocu = queryDoc.data();
+            return infoDocu.role;
+        }
     }
 
     //Logout
@@ -92,6 +104,7 @@ export function AuthProvider ({children}) {
             return infoDocu.dishes;
         }
     }
+
 
     useEffect(() => {
         const unsusbcribe = onAuthStateChanged(auth, currentUser => {
