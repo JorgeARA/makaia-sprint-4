@@ -1,19 +1,14 @@
 import React from 'react';
-import { Button, Container} from "react-bootstrap";
+import CrudDishesForm from './CrudDishesForm';
+import CrudDishesList from './CrudDishesList';
 
 function CrudDishes() {
   return (
-    <Container className='crudDishes_container'>
-            <h3>Here, you can modify your dishes</h3>
-            <div className='inputs'>
-
-            </div>
-            <div>
-
-            </div>
-
-        </Container>
-  )
+    <div className="App">
+        <CrudDishesForm />
+        <CrudDishesList />  
+    </div>    
+  );
 }
 
-export default CrudDishes
+export default CrudDishes;

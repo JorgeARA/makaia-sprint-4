@@ -2,6 +2,8 @@ import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {deleteRestaurant} from '../../features/restaurants/restaurantSlice';
 import {Link} from 'react-router-dom';
+
+
 function CrudRestaurantsList() {
     const restaurants = useSelector(state => state.restaurants);
     const dispatch = useDispatch();
@@ -13,7 +15,6 @@ function CrudRestaurantsList() {
     
   return (
     <div>
-
         <header>
             <h1>Restaurants {restaurants.length}</h1>
             <Link to='/create-restaurant'>Create restaurant</Link>
@@ -34,4 +35,4 @@ function CrudRestaurantsList() {
   )
 }
 
-export default CrudRestaurantsList
+export default CrudRestaurantsList;

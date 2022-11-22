@@ -19,6 +19,8 @@ import CrudRestaurants from './Admin/CrudRestaurants';
 import CrudDishes from './Admin/CrudDishes';
 import CrudRestaurantsList from './Admin/CrudRestaurantsList';
 import CrudRestaurantsForm from './Admin/CrudRestaurantsForm';
+import CrudDishesForm from './Admin/CrudDishesForm';
+import CrudDishesList from './Admin/CrudDishesList';
 
 
 function App() {
@@ -63,11 +65,15 @@ function App() {
                   <Route path="/edit-restaurant/:id" element={
                     <ProtectedRoute><CrudRestaurantsForm/></ProtectedRoute> 
                   } />
-                  {/* {/* <Route path="/restaurants-list" element={
-                    <ProtectedRoute><CrudDishes /></ProtectedRoute> 
-                  } /> */}
-                  
-                  
+                  <Route path="/cruddishes" element={
+                    <ProtectedRoute><CrudDishesList /></ProtectedRoute> 
+                  } />
+                  <Route path="/create-dish" element={
+                    <ProtectedRoute><CrudDishesForm /></ProtectedRoute> 
+                  } />
+                  <Route path="/edit-dish/:id" element={
+                    <ProtectedRoute><CrudDishesForm /></ProtectedRoute> 
+                  } />
               </Routes>
             </AuthProvider> 
     }</> 
